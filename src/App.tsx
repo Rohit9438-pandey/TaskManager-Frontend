@@ -25,12 +25,15 @@ export default function App() {
   const [showModal, setShowModal] = useState(false);
   const [search, setSearch] = useState("");
 
-  const API = "http://localhost:8080/api/task";
+  const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+
+  const API =  `${BASE_URL}/api/task`;
 
   // 🔐 LOGIN FUNCTION
  const login = async () => {
   try {
-    const res = await fetch("http://localhost:8080/auth/login", {
+    const res = await fetch(`${BASE_URL}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
@@ -61,7 +64,7 @@ export default function App() {
 
   const register = async () => {
   try {
-    await fetch("http://localhost:8080/auth/register", {
+    await fetch(`${BASE_URL}/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
